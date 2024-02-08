@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { SignInUser } from '../services/Auth'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 
 const SignIn = (props) => {
 
@@ -50,6 +50,7 @@ const SignIn = (props) => {
                     </button>
                 </form>
             </div>
+            <Link to="/update-password">Change Password</Link>
         </div>
     )
 }

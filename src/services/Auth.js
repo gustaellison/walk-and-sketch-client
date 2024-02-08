@@ -21,6 +21,15 @@ export const RegisterUser = async (data) => {
     }
 }
 
+export const UpdateUser = async (data) => {
+    try {
+        const res = await Client.post('/auth/update-password', data)
+        return res.data
+    } catch (error) {
+        throw error
+    }
+}
+
 export const CheckSession = async () => {
     try {
         // Checks if the current token if it exists is valid

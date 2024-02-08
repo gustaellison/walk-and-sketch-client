@@ -11,6 +11,7 @@ import About from './pages/About.jsx'
 import AddTour from './pages/AddTour.jsx'
 import TourDetails from './pages/TourDetails.jsx'
 import { CheckSession } from './services/Auth.js'
+import UpdatePassword from './pages/UpdatePassword.jsx'
 
 
 function App() {
@@ -61,6 +62,7 @@ function App() {
         <Route path="/signup" element={<Signup/>}/>
         <Route path="/about" element={<About />}/>
         <Route path="/add-tour" element={<AddTour />}/>
+        <Route path="/update-password" element={<UpdatePassword />}/>
       </Routes>
       <footer></footer>
     </div>
