@@ -31,10 +31,16 @@ export const UpdateUser = async (data) => {
 }
 
 export const CheckSession = async () => {
+    const token = localStorage.getItem('token') ? localStorage.getItem('token') : ''
+
     try {
         // Checks if the current token if it exists is valid
-        const res = await Client.get('/auth/session')
-        return res.data
+        const res = await Client.get('/auth/session', {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        })
+        return res.data;
     } catch (error) {
         throw error
     }

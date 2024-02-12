@@ -8,16 +8,18 @@ import Client from './services/api.js'
 import Login from './pages/Login.jsx'
 import Signup from './pages/Signup.jsx'
 import About from './pages/About.jsx'
-import AddTour from './pages/AddTour.jsx'
+import AddTour from './components/AddTour.jsx'
 import TourDetails from './pages/TourDetails.jsx'
 import { CheckSession } from './services/Auth.js'
 import UpdatePassword from './pages/UpdatePassword.jsx'
+import UserDetails from './pages/UserDetails.jsx'
 
 
 function App() {
 
-  const[tours, setTours] = useState([])
-  const [ user, setUser] = useState(null)
+  const [tours, setTours] = useState([])
+  const [user, setUser] = useState(null)
+  const [updatedTours, setUpdatedTours] = useState(0)
 
   const checkToken = async () => {
     const user = await CheckSession()
@@ -26,7 +28,7 @@ function App() {
 
   useEffect(()=> {
     const token = localStorage.getItem('token')
-    if (token)   {
+    if (token) {
       checkToken()
     }
   }, [])
@@ -37,13 +39,16 @@ function App() {
     localStorage.clear()
   }
 
+  const getTours = async () => {
+    let res = await Client.get('/tours')
+    setTours(res.data)
+  }
+
   useEffect(() => {
-    const getTours = async () => {
-      let res = await Client.get('/tours')
-      setTours(res.data)
-    } 
     getTours()
-  }, [])
+  }, [updatedTours])
+  
+
 
   return (
     <div>
@@ -56,13 +61,14 @@ function App() {
       <main></main>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/tours" element={<Tours tours={tours} user={user}/>}/>
+        <Route path="/tours" element={<Tours tours={tours} user={user} setUpdatedTours={setUpdatedTours} />}/>
         <Route path="/tours/:id" element={<TourDetails tours={tours} user={user}/>}/>
         <Route path="/login" element={<Login setUser={setUser}/>}/>
         <Route path="/signup" element={<Signup/>}/>
         <Route path="/about" element={<About />}/>
         <Route path="/add-tour" element={<AddTour />}/>
         <Route path="/update-password" element={<UpdatePassword />}/>
+        <Route path="/user-details" element={<UserDetails />}/>
       </Routes>
       <footer></footer>
     </div>
