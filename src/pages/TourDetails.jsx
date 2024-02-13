@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Client from '../services/api';
+import EditTour from '../components/EditTour';
 
 const TourDetail = ({user}) => {
     const { id } = useParams();
     const [tour, setTour] = useState({});
-    const [tickets, setTickets] = useState([]);
     const [ticketCreated, setTicketCreated] = useState(false);
+    const [tickets, setTickets] = useState([])
+
 
     useEffect(() => {
         const fetchTour = async () => {
@@ -21,15 +23,8 @@ const TourDetail = ({user}) => {
         fetchTour();
     }, [id]);
 
-    const fetchTicketsForTour = async (tourId) => {
-    };
-
-
     const bookTicket = async () => {
         try {
-            // Get current user ID from wherever you store it in your application
-            // const userId = user._id // Replace with actual logic to get current user ID
-
             const res = await Client.post('/tickets', {
                 _tour: id,
                 _user: user.id
@@ -44,7 +39,8 @@ const TourDetail = ({user}) => {
         <div>
             <h1>Tour Details</h1>
             <div className="tour-details">
-                <h3>Name: {tour.name}</h3>
+                <h3>{tour.name}</h3>
+                <img src={tour.image} alt="" />
                 <p>{tour.description}</p>
                 <p>{tour._id}</p>
                 <p>Date: {tour.date}</p>
@@ -62,6 +58,7 @@ const TourDetail = ({user}) => {
                         </li>
                 ))}
             </div>
+            <EditTour />
         </div>
     );
 };

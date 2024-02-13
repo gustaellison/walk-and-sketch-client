@@ -13,6 +13,7 @@ import TourDetails from './pages/TourDetails.jsx'
 import { CheckSession } from './services/Auth.js'
 import UpdatePassword from './pages/UpdatePassword.jsx'
 import UserDetails from './pages/UserDetails.jsx'
+import EditTour from './components/EditTour.jsx'
 
 
 function App() {
@@ -68,7 +69,8 @@ function App() {
         <Route path="/about" element={<About />}/>
         <Route path="/add-tour" element={<AddTour />}/>
         <Route path="/update-password" element={<UpdatePassword />}/>
-        <Route path="/user-details" element={<UserDetails />}/>
+        <Route path="/user-details" element={<UserDetails user={user}/>}/>
+        <Route path="/tours/:id/edit" element={<EditTour tours={tours} setUpdatedTours={setUpdatedTours}/>}/>
       </Routes>
       <footer></footer>
     </div>

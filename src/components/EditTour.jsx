@@ -1,8 +1,9 @@
-/* eslint-disable react/prop-types */
-import Client from '../services/api'
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import Client from '../services/api';
 
-const AddTour = ({ setUpdatedTours }) => {
+const EditTour = ({ setUpdatedTours }) => {
+    const { id } = useParams();
     const [formData, setFormData] = useState({
         name: '',
         duration: '',
@@ -17,6 +18,32 @@ const AddTour = ({ setUpdatedTours }) => {
         capacity: ''
     });
 
+    useEffect(() => {
+        const fetchTour = async () => {
+            try {
+                const res = await Client.get(`/tours/${id}`);
+                const tourData = res.data;
+                console.log(tourData)
+                setFormData({
+                    name: tourData.name,
+                    type: tourData.type || '',
+                    date: tourData.date || '',
+                    duration: tourData.duration || '',
+                    time: tourData.time || '',
+                    image: tourData.image || '',
+                    trailName: tourData.trailName || '',
+                    distance: tourData.distance || '',
+                    description: tourData.description || '',
+                    medium: tourData.medium || '',
+                    capacity: tourData.capacity || ''
+                });
+            } catch (error) {
+                console.error('Error fetching tour:', error);
+            }
+        };
+        fetchTour();
+    }, [id]);
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData(prevState => ({
@@ -27,30 +54,24 @@ const AddTour = ({ setUpdatedTours }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        // const token = localStorage.getItem('token')?localStorage.getItem('token') : ''
         try {
-            await Client.post(`/tours`, formData, 
-            // {
-            //     headers: {
-            //         'Authorization': `Bearer ${token}`
-            //     }
-            // }
+            await Client.put(`/tours/${id}`, formData, 
             );
             setUpdatedTours(prev => prev + 1);
         } catch (error) {
-            console.error('Error creating tour:', error);
+            console.error('Error editing tour:', error);
         }
     };
 
     return (
         <div>
-            <h2>Create a New Tour</h2>
+            <h2>Edit Tour</h2>
             <form onSubmit={handleSubmit}>
                 <label>Name:</label>
                 <input type="text" name="name" value={formData.name} onChange={handleChange} required />
-                <label>Duration(hours):</label>
-                <input type="text" name="duration" value={formData.duration} onChange={handleChange} required />
                 <label>Type:</label>
+                <input type="text" name="type" value={formData.type} onChange={handleChange} required />
+                <label>Duration:</label>
                 <input type="text" name="type" value={formData.type} onChange={handleChange} required />
                 <label>Date:</label>
                 <input type="date" name="date" value={formData.date} onChange={handleChange} required />
@@ -68,13 +89,10 @@ const AddTour = ({ setUpdatedTours }) => {
                 <input type="text" name="medium" value={formData.medium} onChange={handleChange} required />
                 <label>Capacity:</label>
                 <input type="number" name="capacity" value={formData.capacity} onChange={handleChange} required />
-
-
-
-                <button type="submit">Create Tour</button>
+                <button type="submit">Save Changes</button>
             </form>
         </div>
     );
 };
 
-export default AddTour
+export default EditTour;
