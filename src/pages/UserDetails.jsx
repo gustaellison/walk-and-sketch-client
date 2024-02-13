@@ -20,6 +20,25 @@ const UserDetails = ({user}) => {
     fetchTickets();
   }, []);
 
+  const handleDelete = async (id) => {
+    const token = localStorage.getItem('token') ? localStorage.getItem('token') : ''
+
+    try {
+      await Client.delete(`tickets/${id}`, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
+      // Update the state to reflect the deletion
+    } catch (error) {
+      console.error('Error deleting tour:', error);
+    }
+    refreshPage()
+  };
+
+  function refreshPage() {
+    window.location.reload(false);
+  }
 
   return (
     <div>
@@ -29,12 +48,14 @@ const UserDetails = ({user}) => {
           // Check if the ticket's status is 'active'
           if (ticket._user._id === user.id ) {
             return (
-              <li key={ticket._id}>
-                Ticket number: {ticket._id}
-                Tour ID: {ticket._tour._id}
-                Ticket Holder: {ticket._user.name}
-                Tour Details: <a href={`tours/${ticket._tour._id}`}>Tour Details</a>
-              </li>
+              <div className="card" key={ticket._id}>
+                <h4>{ticket._tour.name}</h4> 
+                <p>Ticket number: {ticket._id}</p>
+                <p>Date: {ticket._tour.time} on {ticket._tour.date}</p>
+                <a href={`tours/${ticket._tour._id}`}><button>Tour Details</button> </a>
+                <button onClick={() => handleDelete(ticket._id)} className="btn btn-danger">Delete</button>
+
+              </div>
             );
           } else {
             // If the ticket's status is not 'active', don't render it

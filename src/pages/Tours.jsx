@@ -31,22 +31,6 @@ const Tours = ({ tours, user, setUpdatedTours }) => {
 
 
 
-  const handleDelete = async (id) => {
-    const token = localStorage.getItem('token') ? localStorage.getItem('token') : ''
-
-    try {
-      await Client.delete(`tours/${id}`, {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      });
-      // Update the state to reflect the deletion
-      setUpdatedTours(prev => prev + 1);
-    } catch (error) {
-      console.error('Error deleting tour:', error);
-    }
-  };
-
   return (
 <div className="row">
         {tours.map((tour) => (
@@ -61,7 +45,6 @@ const Tours = ({ tours, user, setUpdatedTours }) => {
               <p>Medium: {tour.medium}</p>
               <p></p>
               <Link to={`/tours/${tour._id}`} className="btn btn-primary">Details</Link>
-              {user && user.adminStatus === true && <button onClick={() => handleDelete(tour._id)} className="btn btn-danger">Delete</button>}
               
             </div>
           </div>

@@ -29,12 +29,12 @@ const AddTour = ({ setUpdatedTours }) => {
         e.preventDefault();
         // const token = localStorage.getItem('token')?localStorage.getItem('token') : ''
         try {
-            await Client.post(`/tours`, formData, 
-            // {
-            //     headers: {
-            //         'Authorization': `Bearer ${token}`
-            //     }
-            // }
+            await Client.post(`/tours`, formData,
+                // {
+                //     headers: {
+                //         'Authorization': `Bearer ${token}`
+                //     }
+                // }
             );
             setUpdatedTours(prev => prev + 1);
         } catch (error) {
@@ -44,34 +44,56 @@ const AddTour = ({ setUpdatedTours }) => {
 
     return (
         <div>
+
             <h2>Create a New Tour</h2>
-            <form onSubmit={handleSubmit}>
-                <label>Name:</label>
-                <input type="text" name="name" value={formData.name} onChange={handleChange} required />
-                <label>Duration(hours):</label>
-                <input type="text" name="duration" value={formData.duration} onChange={handleChange} required />
-                <label>Type:</label>
-                <input type="text" name="type" value={formData.type} onChange={handleChange} required />
-                <label>Date:</label>
-                <input type="date" name="date" value={formData.date} onChange={handleChange} required />
-                <label>Time:</label>
-                <input type="time" name="time" value={formData.time} onChange={handleChange} required />
-                <label>Image Url:</label>
-                <input type="text" name="image" value={formData.image} onChange={handleChange} required />
-                <label>Trail Name:</label>
-                <input type="text" name="trailName" value={formData.trailName} onChange={handleChange} required />
-                <label>Distance:</label>
-                <input type="text" name="distance" value={formData.distance} onChange={handleChange} required />
-                <label>Description:</label>
-                <input type="text" name="description" value={formData.description} onChange={handleChange} required />
-                <label>Medium:</label>
-                <input type="text" name="medium" value={formData.medium} onChange={handleChange} required />
-                <label>Capacity:</label>
-                <input type="number" name="capacity" value={formData.capacity} onChange={handleChange} required />
+            <form onSubmit={handleSubmit} className="px-5 mx-auto row g-3">
 
+                <div className="col-md-6">
+                    <label className="row form-label">Name:</label>
+                    <input className="form-control" placeholder="" type="text" name="name" value={formData.name} onChange={handleChange} required />
+                </div>
+                <div className="col-md-6">
+                    <label className="row form-label">Image Url:</label>
+                    <input className="form-control" type="text" name="image" value={formData.image} onChange={handleChange} required  />
+                </div>
+                <div className="col-md-3">
+                    <label className="row form-label">Duration:</label>
+                    <input className="form-control" placeholder="" type="text" name="duration" value={formData.duration} onChange={handleChange} required />
+                </div>
+                <div className="col-md-3">
+                    <label className="row form-label">Difficulty:</label>
+                    <input className="form-control" type="text" name="type" value={formData.type} onChange={handleChange} required />
+                </div>
+                <div className="col-md-3">
+                    <label className="row form-label">Date:</label>
+                    <input className="form-control" type="date" name="date" value={formData.date} onChange={handleChange} required />
+                </div>
+                <div className="col-md-3">
+                    <label className="row form-label">Time:</label>
+                    <input className="form-control" type="time" name="time" value={formData.time} onChange={handleChange} required />
+                </div>
+                <div className="col-md-3">
+                    <label className="row form-label">Trail Name:</label>
+                    <input className="form-control" type="text" name="trailName" value={formData.trailName} onChange={handleChange} required/>
+                </div>
+                <div className="col-md-3">
+                    <label className="row form-label">Distance:</label>
+                    <input className="form-control" type="text" name="distance" value={formData.distance} onChange={handleChange} required/>
+                </div>
+                <div className="col-md-3">
+                    <label className="row form-label">Medium:</label>
+                    <input className="form-control" type="text" name="medium" value={formData.medium} onChange={handleChange} required/>
+                </div>
+                <div className="col-md-3">
+                    <label className="row form-label">Capacity:</label>
+                    <input className="form-control" type="number" name="capacity" value={formData.capacity} onChange={handleChange} required />
+                </div>
+                <div className="col-md-12">
+                    <label className="row form-label">Description:</label>
+                    <input className="form-control" type="text" name="description" value={formData.description} onChange={handleChange} required/>
+                </div>
 
-
-                <button type="submit">Create Tour</button>
+                <button className="btn btn-primary" type="button submit">Create Tour</button>
             </form>
         </div>
     );
