@@ -100,6 +100,7 @@ const Register = () => {
                         </select>
                     </div>
                     <button
+                        className='btn btn-primary'
                         disabled={
                             !formValues.email ||
                             (!formValues.password &&

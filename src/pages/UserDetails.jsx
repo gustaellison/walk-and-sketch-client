@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import Client from '../services/api';
 
 
-const UserDetails = ({user}) => {
+const UserDetails = ({ user }) => {
   const [tickets, setTickets] = useState([])
 
   useEffect(() => {
@@ -46,14 +46,24 @@ const UserDetails = ({user}) => {
       <ul>
         {tickets.map(ticket => {
           // Check if the ticket's status is 'active'
-          if (ticket._user._id === user.id ) {
+          if (ticket._user._id === user.id) {
             return (
-              <div className="card" key={ticket._id}>
-                <h4>{ticket._tour.name}</h4> 
-                <p>Ticket number: {ticket._id}</p>
-                <p>Date: {ticket._tour.time} on {ticket._tour.date}</p>
-                <a href={`tours/${ticket._tour._id}`}><button>Tour Details</button> </a>
-                <button onClick={() => handleDelete(ticket._id)} className="btn btn-danger">Delete</button>
+              <div className="card row-gap" key={ticket._id}>
+                <div className="card border border-secondary row-gap container text-center">
+                  <h4 className=''>{ticket._tour.name}</h4>
+                  <div className=''>
+                    <div className=''>
+                      <p className=''>Ticket number: {ticket._id}</p>
+                      <p>Date: {ticket._tour.time} on {ticket._tour.date}</p>
+                    </div>
+                    <div className=''>
+                      <p>
+                        <a href={`tours/${ticket._tour._id}`}><button className="btn btn-primary">Tour Details</button> </a>
+                        </p>
+                      <a href=""><button onClick={() => handleDelete(ticket._id)} className="btn btn-danger">Delete</button></a>
+                    </div>
+                  </div>
+                </div>
 
               </div>
             );

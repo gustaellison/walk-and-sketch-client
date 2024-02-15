@@ -15,7 +15,7 @@ const TourDetail = ({ user }) => {
             try {
                 const res = await Client.get(`/tickets`);
                 if (res.data && res.data.length > 0) {
-                    const filteredTickets = res.data.filter(ticket => ticket._tour.id !== null);
+                    const filteredTickets = res.data.filter(ticket => ticket._tour._id === id);
                     setTickets(filteredTickets);
                 }
             } catch (error) {
@@ -23,7 +23,7 @@ const TourDetail = ({ user }) => {
             }
         };
         fetchTickets();
-    }, []);
+    }, [id]);
 
     useEffect(() => {
         const fetchTour = async () => {
@@ -96,13 +96,14 @@ const TourDetail = ({ user }) => {
             {ticketCreated && <p>Ticket created successfully!</p>}
             {user && user.adminStatus === true &&
                 <div>
-                    <button onClick={() => handleDeleteTour(tour._id)} className="btn btn-danger">Delete Tour</button>
-                        <p>Note: Before deleting tour, first remove all tickets.</p>
 
-                    <h3>Registered:</h3>
+                        {tickets.length === 0 ? <button onClick={() => handleDeleteTour(tour._id)} className="btn btn-danger">Delete Tour</button> : null}
+
+
+
                     <ul>
+                        <h3>Registered:</h3>
                         {tickets.map(ticket => {
-                            // Check if the ticket's status is 'active'
                             if (tour._id === ticket._tour._id) {
                                 return (
                                     <div key={ticket._id}>
@@ -114,9 +115,25 @@ const TourDetail = ({ user }) => {
                                 return null
                             }
                         })}
+                        {tickets.length > 0 ? <p>**To delete tour, remove all registered attendees**</p> : <p>There are to regstered attendees for this tour.</p>}
                     </ul>
                 </div>}
-
+            
+                {tickets.map(ticket => {
+          // Check if the ticket's status is 'active'
+          if (ticket._user._id === user.id && user.adminStatus === false) {
+              return (
+                  <div  key={ticket._id}>
+                  
+                                        Your Ticket Number: {ticket._id}
+                                        <button onClick={() => handleDeleteTicket(ticket._id)} className="btn">X</button>
+              </div>
+            );
+          } else {
+            // If the ticket's status is not 'active', don't render it
+            return null;
+          }
+        })}
 
             {user && user.adminStatus === true && <EditTour />}
 
