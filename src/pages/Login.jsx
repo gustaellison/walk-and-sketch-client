@@ -23,9 +23,9 @@ const SignIn = (props) => {
     return (
         <div className="">
             <div className="">
-                <form className="" onSubmit={handleSubmit}>
-                    <div className="input-wrapper">
-                        <label className="" htmlFor="email">Email</label>
+                <form className="p-3" onSubmit={handleSubmit}>
+                    <div className="input-wrapper p-1">
+                        <label className="p-2" htmlFor="email">Email</label>
                         <input
                             className=''
                             onChange={handleChange}
@@ -36,8 +36,8 @@ const SignIn = (props) => {
                             required
                         />
                     </div>
-                    <div className="input-wrapper">
-                        <label className="form-label" htmlFor="password">Password</label>
+                    <div className="input-wrapper p-1">
+                        <label className="form-label p-1" htmlFor="password">Password</label>
                         <input
                             onChange={handleChange}
                             type="password"
@@ -50,6 +50,13 @@ const SignIn = (props) => {
                         Sign In
                     </button>
                 </form>
+                <a className="p-2" href="/signup/">Create an account &rarr;	</a>
+            </div>
+            <br />
+            <div>
+                <strong>User Login-</strong> username: user@gmail.com password: 123
+                <br/>
+                <strong>Admin Login-</strong> username: admin@gmail.com password: seirocks
             </div>
         </div>
     )

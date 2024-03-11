@@ -34,6 +34,9 @@ const Tours = ({ tours, user, setUpdatedTours }) => {
   return (
 <div className="row">
   <h1>All Tours</h1>
+    <div>
+      View tour details to book your tour.
+    </div>
         {tours.map((tour) => (
       <div className="col-sm-6 mb-2 mb-sm-0">
           <div className="card" key={tour._id}>

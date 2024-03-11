@@ -39,8 +39,8 @@ const Register = () => {
         <div className="signin col">
             <div className="card-overlay centered">
                 <form className="col" onSubmit={handleSubmit}>
-                    <div className="input-wrapper">
-                        <label htmlFor="name">Name</label>
+                    <div className="input-wrapper p-1">
+                        <label className="p-1" htmlFor="name">Name</label>
                         <input
                             onChange={handleChange}
                             name="name"
@@ -50,8 +50,8 @@ const Register = () => {
                             required
                         />
                     </div>
-                    <div className="input-wrapper">
-                        <label htmlFor="email">Email</label>
+                    <div className="input-wrapper p-1">
+                        <label className="p-1" htmlFor="email">Email</label>
                         <input
                             onChange={handleChange}
                             name="email"
@@ -63,8 +63,8 @@ const Register = () => {
                         />
                     </div>
 
-                    <div className="input-wrapper">
-                        <label htmlFor="password">Password</label>
+                    <div className="input-wrapper p-1">
+                        <label className="p-1" htmlFor="password">Password</label>
                         <input
                             onChange={handleChange}
                             type="password"
@@ -75,8 +75,8 @@ const Register = () => {
                             required
                         />
                     </div>
-                    <div className="input-wrapper">
-                        <label htmlFor="confirmPassword">Confirm Password</label>
+                    <div className="input-wrapper p-1 ">
+                        <label className="p-1" htmlFor="confirmPassword">Confirm Password</label>
                         <input
                             onChange={handleChange}
                             type="password"
@@ -87,8 +87,8 @@ const Register = () => {
                             required
                         />
                     </div>
-                    <div className="input-wrapper">
-                        <label htmlFor="adminStatus">Admin Status</label>
+                    <div className="input-wrapper p-1">
+                        <label className="p-1" htmlFor="adminStatus">Admin Status</label>
                         <select
                             onChange={handleChange}
                             name="adminStatus"
