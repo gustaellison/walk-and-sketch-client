@@ -6,6 +6,8 @@ The app has 2 levels of user credentials, Admin and User.
 - Admin level accounts are intended to be used by the guides. They have the ability to add, edit and delete new tours on the site. They may also book tours to attend.
 - Users only have the ability to book or delete their own tickets for tours. 
 
+Heroku live link: https://walk-and-sketch-skagway-3b34d8d6ca90.herokuapp.com/
+
 ## Technologies used:
 - MongoDb
 - VS Code
