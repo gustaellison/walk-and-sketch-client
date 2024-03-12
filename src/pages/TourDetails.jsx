@@ -9,6 +9,7 @@ const TourDetail = ({ user }) => {
     const [ticketCreated, setTicketCreated] = useState(false);
     const [tickets, setTickets] = useState([]);
     const navigate = useNavigate();
+    
 
     useEffect(() => {
         const fetchTickets = async () => {
@@ -80,66 +81,66 @@ const TourDetail = ({ user }) => {
 
     return (
         <div>
-    <div className='d-flex p-2'>
-        <Link to="/tours"><button className="btn">&#8592; Back to Tours</button> </Link>
-    </div>
-            <h1>Tour Details</h1>
-    <div className="row">
-        <div className="col-md-8 px-5 pt-2">
-            <div className="tour-details">
-                <h3>{tour.name}</h3>
-                <img height="200px" className="rounded m-4" src={tour.image} alt="" />
-                <p className="px-4">{tour.description}</p>
-                <p>{tour._id}</p>
-                <p><strong>Date: </strong>{new Date(tour.date).toLocaleDateString('en-US', { day: '2-digit', month: 'long', year: 'numeric' })} <strong>Time: </strong>{tour.time}</p>
-                {user ?
-                    <button className="btn btn-primary" onClick={bookTicket}>Book Now</button>
-                    : <Link to="/login" className="nav-link"><button className="btn btn-primary">Login to Book!</button></Link>}
-                {ticketCreated && <p>Ticket created successfully!</p>}
+            <div className='d-flex p-2'>
+                <Link to="/tours"><button className="btn">&#8592; Back to Tours</button> </Link>
             </div>
+            <h1>Tour Details</h1>
+            <div className="row">
+
+                <div className={user ? "col-md-8 px-4 pt-2 " : "col-12 px-4 pt-2"}>
+                    <div className="tour-details bg-light pt-2 pb-3">
+                        <h3>{tour.name}</h3>
+                        <img height="200px" className="rounded m-4" src={tour.image} alt="" />
+                        <p className="px-4">{tour.description}</p>
+                        <p><strong>Date: </strong>{new Date(tour.date).toLocaleDateString('en-US', { day: '2-digit', month: 'long', year: 'numeric' })} <strong>Time: </strong>{tour.time}</p>
+                        {user ?
+                            <button className="btn btn-primary" onClick={bookTicket}>Book Now</button>
+                            : <Link to="/login" className=""><button className="btn btn-primary">Login to Book!</button></Link>}
+                        {ticketCreated && <p>Ticket created successfully!</p>}
+                    </div>
+                </div>
+                {user && user.adminStatus === true &&
+                    <div className="col-md-4 p-2">
+                        <div className="pt-3 pb-3 bg-light">
+                            <ul>
+                                <h3>Registered Guests:</h3>
+                                {tickets.map(ticket => {
+                                    if (tour._id === ticket._tour._id) {
+                                        return (
+                                            <div key={ticket._id}>
+                                                Ticket Holder: {ticket._user.name}
+                                                <button onClick={() => handleDeleteTicket(ticket._id)} className="btn">X</button>
+                                            </div>
+                                        );
+                                    } else {
+                                        return null
+                                    }
+                                })}
+                                {tickets.length > 0 ? <p>**To delete tour, remove all registered attendees**</p> : <p>There are no registered attendees for this tour.</p>}
+                                {tickets.length === 0 ? <button onClick={() => handleDeleteTour(tour._id)} className="btn btn-danger">Delete Tour</button> : null}
+                            </ul>
+                        </div>
+                        {user &&
+                            <div>
+                                {tickets.map(ticket => {
+                                    // Check if the ticket's status is 'active'
+                                    if (ticket._user._id === user.id && user.adminStatus === false) {
+                                        return (
+                                            <div key={ticket._id}>
+                                                Your Ticket Number: {ticket._id}
+                                                <button onClick={() => handleDeleteTicket(ticket._id)} className="btn">X</button>
+                                            </div>
+                                        );
+                                    } else {
+                                        // If the ticket's status is not 'active', don't render it
+                                        return null;
+                                    }
+                                })}
+                            </div>}
+                    </div>}
+            </div>
+            {user && user.adminStatus === true && <EditTour />}
         </div>
-        <div className="col-md-4 bg-light">
-            {user && user.adminStatus === true &&
-                <div className="pt-2">
-                    <ul>
-                        <h3>Registered:</h3>
-                        {tickets.map(ticket => {
-                            if (tour._id === ticket._tour._id) {
-                                return (
-                                    <div key={ticket._id}>
-                                        Ticket Holder: {ticket._user.name}
-                                        <button onClick={() => handleDeleteTicket(ticket._id)} className="btn">X</button>
-                                    </div>
-                                );
-                            } else {
-                                return null
-                            }
-                        })}
-                        {tickets.length > 0 ? <p>**To delete tour, remove all registered attendees**</p> : <p>There are no registered attendees for this tour.</p>}
-                        {tickets.length === 0 ? <button onClick={() => handleDeleteTour(tour._id)} className="btn btn-danger">Delete Tour</button> : null}
-                    </ul>
-                </div>}
-            {user &&
-                <div>
-                    {tickets.map(ticket => {
-                        // Check if the ticket's status is 'active'
-                        if (ticket._user._id === user.id && user.adminStatus === false) {
-                            return (
-                                <div key={ticket._id}>
-                                    Your Ticket Number: {ticket._id}
-                                    <button onClick={() => handleDeleteTicket(ticket._id)} className="btn">X</button>
-                                </div>
-                            );
-                        } else {
-                            // If the ticket's status is not 'active', don't render it
-                            return null;
-                        }
-                    })}
-                </div>}
-        </div>
-    </div>
-    {user && user.adminStatus === true && <EditTour />}
-</div>
 
     );
 };

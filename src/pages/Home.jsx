@@ -5,7 +5,7 @@ const Home = () => {
     <div className="container pt-4">
       <h1>Home</h1>
       <div className="container-sm px-4">
-        Introducing an enchanting tmx-5 our booking app tailored for a charming Alaskan town! Immerse yourself in a selection of captivating tours that invite you to embark on invigorating hikes to breathtaking scenic overlooks. Our knowledgeable guides not only lead the way but also impart brief art lessons, adding a touch of creativity to your journey.
+        Introducing an enchanting our booking app tailored for a charming Alaskan town! Immerse yourself in a selection of captivating tours that invite you to embark on invigorating hikes to breathtaking scenic overlooks. Our knowledgeable guides not only lead the way but also impart brief art lessons, adding a touch of creativity to your journey.
       </div>
       <br/>
       <div className="container-sm">
