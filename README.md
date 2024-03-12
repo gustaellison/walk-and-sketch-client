@@ -20,9 +20,11 @@ Heroku live link: https://walk-and-sketch-skagway-3b34d8d6ca90.herokuapp.com/
 
 ## Screenshots:
 
-![screenshot1](./src/assets/images/Screenshot%202024-03-11%20at%202.45.52%20PM.png)
-![screenshot1](./src/assets/images/Screenshot%202024-03-11%20at%202.46.23%20PM.png)
-![screenshot1](./src/assets/images/Screenshot%202024-03-11%20at%202.46.37%20PM.png)
+![screenshot1](./src/assets/images/Screenshot%202024-03-12%20at%204.57.46%20PM.png)
+![screenshot1](./src/assets/images/Screenshot%202024-03-12%20at%204.57.56%20PM.png)
+![screenshot1](./src/assets/images/Screenshot%202024-03-12%20at%204.58.43%20PM.png)
+![screenshot1](./src/assets/images/Screenshot%202024-03-12%20at%204.58.56%20PM.png)
+![screenshot1](./src/assets/images/Screenshot%202024-03-12%20at%204.59.09%20PM.png)
 
 ## Future Additions:
 - Reviews
