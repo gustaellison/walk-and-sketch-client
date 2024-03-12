@@ -36,8 +36,9 @@ const Register = () => {
     }
 
     return (
-        <div className="signin col">
-            <div className="card-overlay centered">
+        <div className="container pt-4 signin col">
+            <h1>Create An Account</h1>
+            <div className="card-overlay centered pt-2">
                 <form className="col" onSubmit={handleSubmit}>
                     <div className="input-wrapper p-1">
                         <label className="p-1" htmlFor="name">Name</label>
@@ -107,7 +108,7 @@ const Register = () => {
                                 formValues.confirmPassword === formValues.password)
                         }
                     >
-                        Sign In
+                        Create Account
                     </button>
                 </form>
             </div>

@@ -32,7 +32,7 @@ const Tours = ({ tours, user, setUpdatedTours }) => {
 
 
   return (
-<div className="row">
+<div className="row container-fluid pt-4">
   <h1>All Tours</h1>
     <div>
       View tour details to book your tour.
@@ -54,7 +54,6 @@ const Tours = ({ tours, user, setUpdatedTours }) => {
           </div>
       </div>
         ))}
-
       {user && user.adminStatus === true && <AddTour setUpdatedTours={setUpdatedTours} />}
     </div>
   );

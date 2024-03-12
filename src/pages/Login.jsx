@@ -21,8 +21,9 @@ const SignIn = (props) => {
     }
 
     return (
-        <div className="">
+        <div className="container pt-4">
             <div className="">
+                <h1>Log In</h1>
                 <form className="p-3" onSubmit={handleSubmit}>
                     <div className="input-wrapper p-1">
                         <label className="p-2" htmlFor="email">Email</label>

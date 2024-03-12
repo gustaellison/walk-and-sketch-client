@@ -52,14 +52,15 @@ function App() {
 
 
   return (
-    <div>
-      <header>
+    <div className="container-fluid">
+      <header className="container-fluid">
         < Nav 
           user={user}
           handleLogOut={handleLogOut}
         />
       </header>
-      <main></main>
+      <main className="container-fluid mt-5">
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/tours" element={<Tours tours={tours} user={user} setUpdatedTours={setUpdatedTours} />}/>
@@ -72,6 +73,7 @@ function App() {
         <Route path="/user-details" element={<UserDetails user={user}/>}/>
         <Route path="/tours/:id/edit" element={<EditTour tours={tours} setUpdatedTours={setUpdatedTours}/>}/>
       </Routes>
+      </main>
       <footer></footer>
     </div>
   )

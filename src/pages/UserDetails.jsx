@@ -41,14 +41,14 @@ const UserDetails = ({ user }) => {
   }
 
   return (
-    <div>
+    <div className="container pt-4">
       <h1>Your Tickets</h1>
       <ul>
         {tickets.map(ticket => {
           // Check if the ticket's status is 'active'
           if (ticket._user._id === user.id) {
             return (
-              <div className="card row-gap" key={ticket._id}>
+              <div className=" row-gap" key={ticket._id}>
                 <div className="card border border-secondary row-gap container text-center">
                   <h4 className=''>{ticket._tour.name}</h4>
                   <div className=''>

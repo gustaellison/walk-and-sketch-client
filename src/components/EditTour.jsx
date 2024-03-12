@@ -68,7 +68,7 @@ const EditTour = ({ setTour }) => {
     };
 
     return (
-        <div>
+        <div className="mt-5 bg-light p-4">
             <h2>Edit Tour</h2>
             <form onSubmit={handleSubmit} className="px-5 mx-auto row g-3">
 

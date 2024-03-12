@@ -2,13 +2,13 @@ import React from 'react'
 
 const Home = () => {
   return (
-    <div>
+    <div className="container pt-4">
       <h1>Home</h1>
-      <div className="m-4">
-        Introducing an enchanting tour booking app tailored for a charming Alaskan town! Immerse yourself in a selection of captivating tours that invite you to embark on invigorating hikes to breathtaking scenic overlooks. Our knowledgeable guides not only lead the way but also impart brief art lessons, adding a touch of creativity to your journey.
+      <div className="container-sm px-4">
+        Introducing an enchanting tmx-5 our booking app tailored for a charming Alaskan town! Immerse yourself in a selection of captivating tours that invite you to embark on invigorating hikes to breathtaking scenic overlooks. Our knowledgeable guides not only lead the way but also impart brief art lessons, adding a touch of creativity to your journey.
       </div>
       <br/>
-      <div>
+      <div className="container-sm">
         Experience the perfect blend of nature and artistic inspiration during your vacation, as you revel in the pristine landscapes and create your own unique piece of art to take home. This visionary business is a tribute to the creator's personal experiences living amidst the awe-inspiring beauty of Alaska.
       </div>
       <br/>

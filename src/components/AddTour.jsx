@@ -44,7 +44,7 @@ const AddTour = ({ setUpdatedTours }) => {
 
     return (
         <div>
-
+            <br />
             <h2>Create a New Tour</h2>
             <form onSubmit={handleSubmit} className="px-5 mx-auto row g-3">
 
