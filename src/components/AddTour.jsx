@@ -43,7 +43,7 @@ const AddTour = ({ setUpdatedTours }) => {
     };
 
     return (
-        <div>
+        <div className="bg-light my-4 pb-2">
             <br />
             <h2>Create a New Tour</h2>
             <form onSubmit={handleSubmit} className="px-5 mx-auto row g-3">
