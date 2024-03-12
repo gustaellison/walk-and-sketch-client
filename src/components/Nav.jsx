@@ -1,11 +1,14 @@
 import { Link } from 'react-router-dom'
 
+
+
 const Nav = ({ user, handleLogOut }) => {
+    
     let userOptions
     if (user) {
         userOptions = (
 
-<nav className="navbar navbar-expand-md fixed-top px-3" style={{ backgroundImage: 'url("/src/assets/images/hand-drawn-abstract-outline-background_23-2150611895.jpg")', backgroundSize: 'cover'}} >
+<nav className="navbar navbar-expand-md fixed-top px-3 bg-success" style={{ backgroundImage: 'url("/src/assets/images/hand-drawn-abstract-outline-background_23-2150611895.jpg")', backgroundSize: 'cover'}} >
     <a className="navbar-brand text-light" href="/">Walk and Sketch</a>
     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span className="navbar-toggler-icon"></span>
